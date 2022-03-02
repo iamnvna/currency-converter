@@ -1,39 +1,40 @@
-# Python program to convert the currency
-# of one country to that of another country
+from forex_python.converter import CurrencyRates, RatesNotAvailableError
 
-# Import the modules needed
-import requests
+c = CurrencyRates()
 
+amount = int(input("Enter the amount: "))
+from_currency = input("From Currency (Eg. USD): ").upper()
+to_currency = input("To Currency (Eg. EUR): ").upper()
 
-class Currency_convertor:
-    # empty dict to store the conversion rates
-    rates = {}
+print("\nProcessing ...")
+
+try:
+    result = round(c.convert(from_currency, to_currency, amount), 2)
+    print(f"{amount} {from_currency} is {result} {to_currency}")
+except RatesNotAvailableError:
+    print("Oops! Rate not available.")
+
+# Commentary
+'''
+Line 1:
+    Line 1 is essential to this code. It module used is installed
+    with the 'pip install forex-python' command through the terminal.
+    This module provides methods that allow the code to convert
+    from one currency to another, or perform other functions. The
+    full details is in th documentation.
     
-    def __init__(self, url):
-        data = requests.get(url).json()
-        
-        # Extracting only the rates from the json data
-        self.rates = data["rates"]
-    
-    # function to do a simple cross multiplication between
-    # the amount and the conversion rates
-    def convert(self, from_currency, to_currency, amount):
-        initial_amount = amount
-        if from_currency != 'EUR':
-            amount = amount / self.rates[from_currency]
-        
-        # limiting the precision to 2 decimal places
-        amount = round(amount * self.rates[to_currency], 2)
-        print('{} {} = {} {}'.format(initial_amount, from_currency, amount, to_currency))
+Line 5-7:
+    This block of code accepts the required inputs from the user
+    to perform this function.
 
+Line 9:
+    Rates are returned between 1-5s. This print statement informs
+    the user of the ongoing background process.
 
-# Driver code
-if __name__ == "__main__":
-    # YOUR_ACCESS_KEY = 'GET YOUR ACCESS KEY FROM fixer.io'
-    url = str.__add__('http://data.fixer.io/api/latest?access_key=', "fe37d4487954b04fba7f5dbc2e263bdb")
-    c = Currency_convertor(url)
-    from_country = input("From Country: ")
-    to_country = input("TO Country: ")
-    amount = int(input("Amount: "))
-    
-    c.convert(from_country, to_country, amount)
+Line 11-15:
+    This block of code, manages error from rates that are not currently
+    available through the error handling python technique. The 'convert'
+    method, accepts the parameters from the user, and performs a conversion.
+    The result is rounded to two decimal places, and printed out for the
+    user.
+'''
