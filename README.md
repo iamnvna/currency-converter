@@ -11,15 +11,14 @@ This project is part of my #100DaysOfCode learning streak. I intend to write a s
 
 ## Algorithm
 1. Start.
-2. Define functions to perform the various operations.
-3. Create a variable and assign it the user input for a selected operation.
-4. Create two variables to hold the operands from the uer.
-5. Using if/in and if/else if/else statements, evaluate the user input in line 3 and 4.
+2. Import the appropriate python module.
+3. Create variables and assign them the user inputs required for the operation.
+4. Using the appropriate method from the module, convert the user input (amount).
 6. Print the answer to the screen.
 7. Stop.
 
 *NB: Create checks at various points, to evaluate user input. This is to ensure that the required values are being passed from the user input into the various variables.*
 
 ## What I've learnt
-* This program was my intrudtion to the python currency module.
+* This program was my introduction to the python currency module. The documentation is available **[here](https://readthedocs.org/projects/forex-python/downloads/pdf/latest/)**.
 * I explored further the use of python the Error Handling technique.
